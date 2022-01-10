@@ -28,7 +28,7 @@ class Login extends Component {
     let { buttonValidate } = this.state;
     const { dispatchEmail } = this.props;
     const numberMaxPassword = 6;
-    if (validator.isEmail(email) && senha.length === numberMaxPassword) {
+    if (validator.isEmail(email) && senha.length >= numberMaxPassword) {
       buttonValidate = false;
     }
     return (
