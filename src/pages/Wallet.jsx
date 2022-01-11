@@ -1,6 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ExpenseTable from '../components/ExpenseTable';
 import FormWallet from '../components/FormWallet';
 import Header from '../components/Header';
 
@@ -10,6 +10,7 @@ class Wallet extends React.Component {
       <div>
         <Header />
         <FormWallet />
+        <ExpenseTable />
       </div>
     );
   }

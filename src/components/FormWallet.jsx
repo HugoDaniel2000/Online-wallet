@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import walletReducer from '../reducers/wallet';
 import { dispatchCoinThunk, sendExpense } from '../actions';
 
 class FormWallet extends React.Component {

@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case SEND_LOGIN:
-    return{ ...state, email: action.email };
+    return { ...state, email: action.email };
   default:
     return state;
   }
