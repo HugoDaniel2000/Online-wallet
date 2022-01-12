@@ -28,9 +28,29 @@ class FormWallet extends React.Component {
     });
   };
 
-  render() {
+  onClick = () => {
+    const { dispatchFetchCurrency, dispatchExpense, exchangeRates, id } = this.props;
     const { value, currency, method, tag, description } = this.state;
-    const { arrayCurrency, dispatchExpense, exchangeRates, id } = this.props;
+    dispatchFetchCurrency();
+
+    dispatchExpense({
+      id,
+      value,
+      currency,
+      method,
+      tag,
+      description,
+      exchangeRates,
+    });
+
+    this.setState({
+      value: '',
+    });
+  }
+
+  render() {
+    const { value, description } = this.state;
+    const { arrayCurrency } = this.props;
     return (
       <div>
         <form>
@@ -98,15 +118,7 @@ class FormWallet extends React.Component {
         </form>
         <button
           type="button"
-          onClick={ () => dispatchExpense({
-            id,
-            value,
-            currency,
-            method,
-            tag,
-            description,
-            exchangeRates,
-          }) }
+          onClick={ this.onClick }
         >
           Adicionar despesa
         </button>
@@ -122,7 +134,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchExpense: (email) => dispatch(sendExpense(email)),
+  dispatchExpense: (expense) => dispatch(sendExpense(expense)),
   dispatchFetchCurrency: () => dispatch(dispatchCoinThunk()),
 });
 
