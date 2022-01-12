@@ -15,6 +15,11 @@ export const failedRequest = (error) => ({ type: FAILED_REQUEST, payload: error 
 export const SEND_EXPENSE = 'SEND_EXPENSE';
 export const sendExpense = (expenses) => ({ type: SEND_EXPENSE, expenses });
 
+export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
+export function removeExpense(expenseId) {
+  return { type: REMOVE_EXPENSE, payload: expenseId };
+}
+
 export const dispatchCoinThunk = () => (dispatch) => {
   dispatch(requestCoin());
   return fetch('https://economia.awesomeapi.com.br/json/all')
@@ -24,4 +29,3 @@ export const dispatchCoinThunk = () => (dispatch) => {
       (error) => dispatch(failedRequest(error)),
     );
 };
-  // (json) => dispatch(requestSuccess(json)),
