@@ -1,16 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeExpense } from '../actions';
+import { editMode, removeExpense } from '../actions';
 
 class ExpensesTable extends React.Component {
-  // constructor() {
-  //   super();
-
-  //   // this.getCurrencyName = this.getCurrencyName.bind(this);
-  //   // this.getUsedExchange = this.getUsedExchange.bind(this);
-  // }
-
   getCurrencyName = (expense) => {
     const { currency, exchangeRates } = expense;
     return exchangeRates[currency].name;
@@ -18,19 +11,16 @@ class ExpensesTable extends React.Component {
 
   getUsedExchange = (expense) => {
     const { currency, exchangeRates } = expense;
-    console.log(expense);
     return Number(exchangeRates[currency].ask).toFixed(2);
   }
 
   getConvertedValue = (expense) => {
     const { currency, exchangeRates, value } = expense;
-    console.log(expense);
     return Number(exchangeRates[currency].ask * value).toFixed(2);
   }
 
   render() {
-    const { expenses, removeExpenseId } = this.props;
-    console.log(expenses);
+    const { expenses, removeExpenseId, editTable } = this.props;
 
     return (
       <main className="Expenses">
@@ -62,7 +52,8 @@ class ExpensesTable extends React.Component {
                     <td>
                       <button
                         type="button"
-                        onClick={ () => { } }
+                        onClick={ () => editTable(expense.id) }
+                        data-testid="edit-btn"
                       >
                         Editar
                       </button>
@@ -93,10 +84,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   removeExpenseId: (expense) => dispatch(removeExpense(expense)),
+  editTable: (id) => dispatch(editMode(id)),
 });
+
 ExpensesTable.propTypes = {
   expenses: PropTypes.arrayOf.isRequired,
   removeExpenseId: PropTypes.func.isRequired,
+  editTable: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpensesTable);

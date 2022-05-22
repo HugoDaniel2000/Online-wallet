@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { dispatchCurrencyThunk, sendExpense } from '../actions';
+import { dispatchCurrencyThunk, finishEdit } from '../actions';
 
-class FormWallet extends React.Component {
+class EditFormWallet extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -29,11 +29,10 @@ class FormWallet extends React.Component {
   };
 
   onClick = () => {
-    const { dispatchFetchCurrency, dispatchExpense, exchangeRates, id } = this.props;
+    const { dispatchEditTable, exchangeRates, id } = this.props;
     const { value, currency, method, tag, description } = this.state;
-    dispatchFetchCurrency();
-
-    dispatchExpense({
+    dispatchCurrencyThunk();
+    dispatchEditTable(id, {
       id,
       value,
       currency,
@@ -64,7 +63,7 @@ class FormWallet extends React.Component {
             onChange={ this.handleChange }
           />
           <label htmlFor="currency">
-            Moeda
+            Moeda3
             <select
               data-testid="currency-input"
               name="currency"
@@ -120,7 +119,7 @@ class FormWallet extends React.Component {
           type="button"
           onClick={ this.onClick }
         >
-          Adicionar despesa
+          Editar despesa
         </button>
       </div>
     );
@@ -130,20 +129,20 @@ class FormWallet extends React.Component {
 const mapStateToProps = (state) => ({
   arrayCurrency: state.wallet.currencies,
   exchangeRates: state.wallet.exchangeRates,
-  id: state.wallet.expenses.length,
+  id: state.wallet.editExpenseId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchExpense: (expense) => dispatch(sendExpense(expense)),
   dispatchFetchCurrency: () => dispatch(dispatchCurrencyThunk()),
+  dispatchEditTable: (id, expense) => dispatch(finishEdit(id, expense)),
 });
 
-FormWallet.propTypes = {
+EditFormWallet.propTypes = {
   dispatchFetchCurrency: PropTypes.func.isRequired,
   arrayCurrency: PropTypes.arrayOf.isRequired,
-  dispatchExpense: PropTypes.func.isRequired,
+  dispatchEditTable: PropTypes.func.isRequired,
   exchangeRates: PropTypes.arrayOf.isRequired,
   id: PropTypes.number.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormWallet);
+export default connect(mapStateToProps, mapDispatchToProps)(EditFormWallet);
