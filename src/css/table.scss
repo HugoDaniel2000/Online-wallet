@@ -1,0 +1,65 @@
+table {
+  /* display: flex;
+  flex-direction: column; */
+  align-self: flex-start;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table{
+  .edit-btn{
+    display: block;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: #ffbe0b;
+    border-style: none;
+    width: 60px;
+    color: black;
+  }
+  .delete-btn{
+    display: block;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: #ef233c;
+    border-style: none;
+    width: 60px;
+    color: black;
+  }
+}
+
+thead {
+  /* flex-grow: inherit; */
+  background-color: white;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  text-align: center;
+  font-weight: 10px;
+}
+
+tbody {
+  /* flex-grow: inherit; */
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+td {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 15px;
+  font-size: 15px;
+}
+
+th {
+  border-bottom: 1px solid black;
+  padding: 30px 5px;
+  font-size: 1.1em;
+}
+
+tr{
+  font-size: 10px;
+}

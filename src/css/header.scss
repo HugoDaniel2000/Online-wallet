@@ -1,0 +1,30 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+  height: 80px;
+  background-color: #3a86ff;
+  .logo{
+    display: flex;
+    margin-left: 30px;
+    .title{
+      margin-top: 16px;
+      margin-left: 30px;
+    }
+
+    img{
+      width: 50px;
+      height: 50px;
+      margin-top: 22px;
+    }
+  }
+
+  .user{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 600px;
+  }
+}
+

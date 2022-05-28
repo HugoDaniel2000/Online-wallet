@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { dispatchCurrencyThunk, sendExpense } from '../actions';
+import { dispatchCoinThunk, sendExpense } from '../actions';
+import '../css/form.scss';
 
 class FormWallet extends React.Component {
   constructor() {
@@ -52,8 +53,8 @@ class FormWallet extends React.Component {
     const { value, description } = this.state;
     const { arrayCurrency } = this.props;
     return (
-      <div>
-        <form>
+      <div className="form">
+        <form className="form-input">
 
           <input
             type="number"
@@ -64,13 +65,13 @@ class FormWallet extends React.Component {
             onChange={ this.handleChange }
           />
           <label htmlFor="currency">
-            Moeda
             <select
               data-testid="currency-input"
               name="currency"
               id="currency"
               onChange={ this.handleChange }
             >
+              <option>Moeda</option>
               {arrayCurrency === null
                 ? null
                 : arrayCurrency
@@ -115,13 +116,13 @@ class FormWallet extends React.Component {
             value={ description }
             onChange={ this.handleChange }
           />
+          <button
+            type="button"
+            onClick={ this.onClick }
+          >
+            Adicionar despesa
+          </button>
         </form>
-        <button
-          type="button"
-          onClick={ this.onClick }
-        >
-          Adicionar despesa
-        </button>
       </div>
     );
   }
@@ -135,7 +136,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchExpense: (expense) => dispatch(sendExpense(expense)),
-  dispatchFetchCurrency: () => dispatch(dispatchCurrencyThunk()),
+  dispatchFetchCurrency: () => dispatch(dispatchCoinThunk()),
 });
 
 FormWallet.propTypes = {

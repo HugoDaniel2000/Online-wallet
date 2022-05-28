@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editMode, removeExpense } from '../actions';
+import '../css/table.scss';
 
 class ExpensesTable extends React.Component {
   getCurrencyName = (expense) => {
@@ -45,7 +46,7 @@ class ExpensesTable extends React.Component {
                     <td>{ expense.tag }</td>
                     <td>{ expense.method }</td>
                     <td>{ parseFloat(Number(expense.value).toFixed(2))}</td>
-                    <td>{ this.getCurrencyName(expense) }</td>
+                    <td>{ this.getCurrencyName(expense).split('/', 1) }</td>
                     <td>{ this.getUsedExchange(expense) }</td>
                     <td>{ this.getConvertedValue(expense) }</td>
                     <td>Real</td>
@@ -53,17 +54,16 @@ class ExpensesTable extends React.Component {
                       <button
                         type="button"
                         onClick={ () => editTable(expense.id) }
-                        data-testid="edit-btn"
+                        className="edit-btn"
                       >
                         Editar
                       </button>
                       <button
                         type="button"
                         onClick={ () => removeExpenseId(expense.id) }
-                        data-testid="delete-btn"
+                        className="delete-btn"
                       >
                         Excluir
-
                       </button>
                     </td>
                   </tr>

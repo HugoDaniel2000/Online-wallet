@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { dispatchCurrencyThunk, finishEdit } from '../actions';
+import { dispatchCoinThunk, finishEdit } from '../actions';
+import '../css/editForm.scss';
 
 class EditFormWallet extends React.Component {
   constructor() {
@@ -31,7 +32,7 @@ class EditFormWallet extends React.Component {
   onClick = () => {
     const { dispatchEditTable, exchangeRates, id } = this.props;
     const { value, currency, method, tag, description } = this.state;
-    dispatchCurrencyThunk();
+    dispatchCoinThunk();
     dispatchEditTable(id, {
       id,
       value,
@@ -52,7 +53,7 @@ class EditFormWallet extends React.Component {
     const { arrayCurrency } = this.props;
     return (
       <div>
-        <form>
+        <form className="edit-form-input">
 
           <input
             type="number"
@@ -63,13 +64,13 @@ class EditFormWallet extends React.Component {
             onChange={ this.handleChange }
           />
           <label htmlFor="currency">
-            Moeda3
             <select
               data-testid="currency-input"
               name="currency"
               id="currency"
               onChange={ this.handleChange }
             >
+              <option>Moeda</option>
               {arrayCurrency === null
                 ? null
                 : arrayCurrency
@@ -114,13 +115,13 @@ class EditFormWallet extends React.Component {
             value={ description }
             onChange={ this.handleChange }
           />
+          <button
+            type="button"
+            onClick={ this.onClick }
+          >
+            Editar despesa
+          </button>
         </form>
-        <button
-          type="button"
-          onClick={ this.onClick }
-        >
-          Editar despesa
-        </button>
       </div>
     );
   }
@@ -133,7 +134,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchFetchCurrency: () => dispatch(dispatchCurrencyThunk()),
+  dispatchFetchCurrency: () => dispatch(dispatchCoinThunk()),
   dispatchEditTable: (id, expense) => dispatch(finishEdit(id, expense)),
 });
 

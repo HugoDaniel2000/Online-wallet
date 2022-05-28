@@ -6,6 +6,8 @@ import {
   REQUEST_COIN,
   REQUEST_SUCCESS,
   SEND_EXPENSE,
+  ENTER_EDIT_MODE,
+  FINISH_EDIT,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -14,6 +16,8 @@ const INITIAL_STATE = {
   isFetching: false,
   exchangeRates: {},
   error: '',
+  editModeOn: false,
+  editExpenseId: '',
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {
@@ -35,6 +39,24 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.payload),
+    };
+  case ENTER_EDIT_MODE:
+    return {
+      ...state,
+      editExpenseId: action.id,
+      editModeOn: true,
+    };
+  case FINISH_EDIT:
+    return {
+      ...state,
+      expenses: state.expenses.map((expense) => {
+        if (expense.id === state.editExpenseId) {
+          return action.payload.editedExpense;
+        }
+        return expense;
+      }),
+      editModeOn: false,
+      expenseToEdit: {},
     };
   default:
     return state;
