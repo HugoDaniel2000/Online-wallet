@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import validator from 'validator';
 import { sendLogin } from '../actions';
+import walletImage from '../images/wallet.png';
+import './css/login.scss';
 
 class Login extends Component {
   constructor() {
@@ -32,8 +34,11 @@ class Login extends Component {
       buttonValidate = false;
     }
     return (
-      <div>
-        <h1>Login</h1>
+      <div className="form-login">
+        <div className="logo-login">
+          <img src={ walletImage } alt="Imagem de uma carteira" />
+          <h1>Online Wallet</h1>
+        </div>
         <input
           type="email"
           name="email"
