@@ -16,7 +16,9 @@ Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor 
 ## :pushpin: Instruções para visualizar o projeto:
 
 - Realizar o git clone: `git clone git@github.com:HugoDaniel2000/Online-wallet.git`;
+- 
+- Instalar as dependências com o `npm install`
 
-- Iniciar o projeto utilizando o `npm start;
+- Iniciar o projeto utilizando o `npm start`;
 
-	:green_circle: Projeto desenvolvido no bloco 15 de Front-end do curso de Desenvolvimento Web da Trybe.
+:green_circle: Projeto desenvolvido no bloco 15 de Front-end do curso de Desenvolvimento Web da Trybe.
