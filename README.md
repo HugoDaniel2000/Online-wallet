@@ -1,18 +1,9 @@
 # :dart: Projeto Online Wallet
-Projeto desenvolvido no bloco 15 de Front-end do curso de Desenvolvimento Web da Trybe.
-
 
 ## :pushpin: Habilidades
 
-* Criar uma aplicação React usando Redux e Router Dom
-  - Criar um store Redux em aplicações React
-  - Criar reducers no Redux em aplicações React
-  - Criar actions no Redux em aplicações React
-  - Criar dispatchers no Redux em aplicações React
-  - Conectar Redux aos componentes React
-  - Criar actions assíncronas na sua aplicação React que faz uso de Redux.
-
-
+- Criar uma aplicação React usando Redux e Router Dom
+  
 ## :pushpin: O que foi desenvolvido
 
 Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário deverá ser capaz de:
